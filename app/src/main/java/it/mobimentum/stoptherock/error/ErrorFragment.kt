@@ -1,5 +1,6 @@
 package it.mobimentum.stoptherock.error
 
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -13,11 +14,16 @@ import android.view.ViewGroup
 import it.mobimentum.stoptherock.MainActivity
 import it.mobimentum.stoptherock.R
 import it.mobimentum.stoptherock.databinding.ErrorFragmentBinding
+import it.mobimentum.stoptherock.di.Injectable
+import javax.inject.Inject
 
 
-class ErrorFragment : Fragment() {
+class ErrorFragment : Fragment(), Injectable {
 
-	private lateinit var viewModel: ErrorViewModel
+	@Inject
+	lateinit var viewModelFactory: ViewModelProvider.Factory
+
+	private lateinit var errorViewModel: ErrorViewModel
 	private lateinit var binding: ErrorFragmentBinding
 
 	override fun onCreateView(
@@ -41,10 +47,10 @@ class ErrorFragment : Fragment() {
 		return binding.root
 	}
 
-	override fun onActivityCreated(savedInstanceState: Bundle?) {
-		super.onActivityCreated(savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 
-		viewModel = ViewModelProviders.of(activity!!).get(ErrorViewModel::class.java)
+		errorViewModel = ViewModelProviders.of(this, viewModelFactory).get(ErrorViewModel::class.java)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {
 			setDisplayHomeAsUpEnabled(false)

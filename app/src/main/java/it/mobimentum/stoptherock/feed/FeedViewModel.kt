@@ -11,10 +11,13 @@ import it.mobimentum.stoptherock.data.Asteroid
 import it.mobimentum.stoptherock.data.source.AsteroidsRepository
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import javax.inject.Inject
 
 data class Page(val positionStart: Int, val count: Int)
 
-class FeedViewModel : ViewModel() {
+class FeedViewModel @Inject constructor(
+	val repository: AsteroidsRepository
+) : ViewModel() {
 
 	// Handlers
 	private val networkThread: Executor = Executors.newFixedThreadPool(1)!!
@@ -23,7 +26,6 @@ class FeedViewModel : ViewModel() {
 	val loading = ObservableBoolean(false)
 	val empty = ObservableBoolean(false)
 
-	private val repository = AsteroidsRepository()
 	private val list = mutableListOf<Asteroid>()
 
 	val items: MutableLiveData<List<Asteroid>> = MutableLiveData<List<Asteroid>>().apply { value = list }
@@ -102,6 +104,7 @@ class FeedViewModel : ViewModel() {
 }
 
 class MainThreadExecutor : Executor {
+
 	private val mainThreadHandler = Handler(Looper.getMainLooper())
 
 	override fun execute(command: Runnable) {

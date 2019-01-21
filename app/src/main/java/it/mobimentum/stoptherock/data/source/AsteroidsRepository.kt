@@ -6,8 +6,13 @@ import it.mobimentum.stoptherock.data.Asteroid
 import it.mobimentum.stoptherock.data.AsteroidResponse
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AsteroidsRepository {
+@Singleton
+class AsteroidsRepository @Inject constructor(
+	private val api: Api
+) {
 
 	companion object {
 		private const val TAG = "Repository"
@@ -35,7 +40,7 @@ class AsteroidsRepository {
 		// Define the time range for the next request
 		val startDate = nextDate
 		val endDate = Date(startDate.time + 7 * DAY)
-		val request = apiServe.feed(DATE_FORMAT.format(startDate), DATE_FORMAT.format(endDate))
+		val request = api.feed(DATE_FORMAT.format(startDate), DATE_FORMAT.format(endDate))
 
 		// Do request
 		var response: AsteroidResponse? = null

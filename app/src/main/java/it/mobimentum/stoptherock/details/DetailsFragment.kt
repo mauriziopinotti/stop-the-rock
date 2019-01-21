@@ -1,5 +1,6 @@
 package it.mobimentum.stoptherock.details
 
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -12,9 +13,11 @@ import it.mobimentum.stoptherock.OnAsteroidClickListener
 import it.mobimentum.stoptherock.R
 import it.mobimentum.stoptherock.data.Asteroid
 import it.mobimentum.stoptherock.databinding.DetailsFragmentBinding
+import it.mobimentum.stoptherock.di.Injectable
+import javax.inject.Inject
 
 
-class DetailsFragment : Fragment() {
+class DetailsFragment : Fragment(), Injectable {
 
 	companion object {
 		const val ARG_ASTEROID = "asteroid"
@@ -22,7 +25,10 @@ class DetailsFragment : Fragment() {
 		fun newInstance() = DetailsFragment()
 	}
 
-	private lateinit var viewModel: DetailsViewModel
+	@Inject
+	lateinit var viewModelFactory: ViewModelProvider.Factory
+
+	private lateinit var detailsViewModel: DetailsViewModel
 	private lateinit var binding: DetailsFragmentBinding
 
 	private lateinit var asteroid: Asteroid
@@ -55,10 +61,10 @@ class DetailsFragment : Fragment() {
 		return binding.root
 	}
 
-	override fun onActivityCreated(savedInstanceState: Bundle?) {
-		super.onActivityCreated(savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 
-		viewModel = ViewModelProviders.of(activity!!).get(DetailsViewModel::class.java)
+		detailsViewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailsViewModel::class.java)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {
 			title = asteroid.name
