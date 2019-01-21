@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="listener"
+            type="it.mobimentum.stoptherock.OnAsteroidClickListener" />
+
+        <variable
+            name="item"
+            type="it.mobimentum.stoptherock.data.Asteroid" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="start|center_vertical"
+        android:onClick="@{() -> listener.onItemClicked(item)}"
+        android:orientation="horizontal"
+        android:paddingStart="?listPreferredItemPaddingLeft"
+        android:paddingEnd="?listPreferredItemPaddingRight">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{item.name}"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/primaryText"
+                tools:text="2018 YW" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@{item.formattedDate}"
+                android:textAppearance="?android:attr/textAppearance"
+                android:textColor="@color/secondaryText"
+                tools:text="2019-01-19" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/threatIcon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="?listPreferredItemPaddingLeft"
+            android:contentDescription="@string/proximity_alert"
+            android:src="@drawable/ic_alert_circle"
+            android:visibility="@{item.isThreat ? View.VISIBLE : View.GONE}" />
+
+    </LinearLayout>
+</layout>

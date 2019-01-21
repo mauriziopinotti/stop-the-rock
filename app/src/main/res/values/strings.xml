@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="app_name">Stop The Rock!</string>
+
+    <string name="feed_activity_title">Near Earth Objects</string>
+
+    <string name="no_asteroids">The Earth is safe, no asteroids approaching!</string>
+    <string name="proximity_alert">Proximity alert!</string>
+
+    <string name="value_hazard_yes">Hazardous</string>
+    <string name="descr_hazard_yes">Collision course with Earth</string>
+    <string name="value_hazard_no">No hazard</string>
+    <string name="descr_hazard_no">Object is not on collision course with Earth</string>
+    <string name="value_brightness">Absolute brightness</string>
+    <string name="value_diameter">Estimated diameter</string>
+    <string name="btn_open">Open on jpl.nasa.gov</string>
+
+    <string name="share_title">Share asteroid details</string>
+    <string name="share_msg">Hey, check out this one, it really rocks! %s</string>
+
+    <string name="no_connection">No connection</string>
+    <string name="error_title">Ups!</string>
+    <string name="error_msg">Something went wrong. Make sure you are connected to the Internet</string>
+    <string name="btn_retry">Retry</string>
+
+</resources>
