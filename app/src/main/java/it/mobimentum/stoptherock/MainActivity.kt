@@ -2,22 +2,34 @@ package it.mobimentum.stoptherock
 
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MenuItem
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import it.mobimentum.stoptherock.data.Asteroid
 import it.mobimentum.stoptherock.details.DetailsFragment
 import it.mobimentum.stoptherock.error.ErrorFragment
 import it.mobimentum.stoptherock.feed.FeedFragment
 import it.mobimentum.stoptherock.feed.FeedViewModel
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
 	companion object {
 		const val EXTRA_IS_ERROR = "EXTRA_IS_ERROR"
 	}
+
+	@Inject
+	lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
+	@Inject
+	lateinit var viewModelFactory: ViewModelProvider.Factory
 
 	private lateinit var feedViewModel: FeedViewModel
 	private lateinit var feedFragment: FeedFragment
@@ -35,13 +47,12 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		// Subscribe to ViewModel events
-		feedViewModel = ViewModelProviders.of(this).get(FeedViewModel::class.java).apply {
-			openAsteroidEvent.observe(this@MainActivity, Observer<Asteroid> { asteroid ->
-				if (asteroid != null) {
-					openDetails(asteroid)
-				}
-			})
-		}
+		feedViewModel = ViewModelProviders.of(feedFragment, viewModelFactory).get(FeedViewModel::class.java)
+		feedViewModel.openAsteroidEvent.observe(this@MainActivity, Observer<Asteroid> { asteroid ->
+			if (asteroid != null) {
+				openDetails(asteroid)
+			}
+		})
 	}
 
 	override fun onNewIntent(intent: Intent?) {
@@ -66,6 +77,8 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 	}
+
+	override fun supportFragmentInjector() = dispatchingAndroidInjector
 
 	private fun openDetails(asteroid: Asteroid) {
 		// Show the details view

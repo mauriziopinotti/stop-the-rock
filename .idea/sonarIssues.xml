@@ -23,6 +23,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/Downloads/android-architecture-components-master/GithubBrowserSample/app/src/main/java/com/android/example/github/di/ViewModelModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Downloads/android-architecture-components-master/GithubBrowserSample/app/src/main/java/com/android/example/github/ui/search/SearchViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/Downloads/android-recyclerview-binding/app/build.gradle">
           <value>
             <set />
@@ -78,6 +88,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/it/mobimentum/stoptherock/feed/FeedViewModel_Factory.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/proguard-rules.pro">
           <value>
             <set />
@@ -119,6 +134,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/OnAsteroidClickListener.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/RockApp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/RockApp.kt">
           <value>
             <set />
           </value>
@@ -173,7 +198,47 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/di/AppComponent.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/di/AppInjector.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/di/AppModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/di/FragmentBuildersModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/di/MainActivityModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/di/ViewModelKey.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/di/ViewModelModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/error/ErrorFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/error/ErrorViewModel.kt">
           <value>
             <set />
           </value>
@@ -279,6 +344,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/util/ViewExt.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/it/mobimentum/stoptherock/viewmodel/RockViewModelFactory.kt">
           <value>
             <set />
           </value>
