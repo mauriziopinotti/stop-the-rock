@@ -34,10 +34,15 @@ class AsteroidsRepository @Inject constructor(
 		val result = mutableListOf<Asteroid>()
 
 		// Define the time range for the first week
-		result.addAll(doRequest(nextDate, Date(nextDate.time + 6 * DAY)) ?: emptyList())
-		if (!result.isEmpty()) {
+		val week1 = doRequest(nextDate, Date(nextDate.time + 6 * DAY))
+		if (week1 == null) return null
+		else if (!week1.isEmpty()) {
+			result.addAll(week1)
+
 			// Define the time range for the second week
-			result.addAll(doRequest(Date(nextDate.time + 7 * DAY), Date(nextDate.time + 13 * DAY)) ?: emptyList())
+			val week2 = doRequest(Date(nextDate.time + 7 * DAY), Date(nextDate.time + 13 * DAY))
+			if (week2 == null) return null
+			result.addAll(week2)
 		}
 
 		// Save pagination for infinite scroll
