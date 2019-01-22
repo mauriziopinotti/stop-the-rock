@@ -37,7 +37,6 @@ class FeedFragment : Fragment(), Injectable {
 		savedInstanceState: Bundle?
 	): View {
 		binding = DataBindingUtil.inflate(inflater, R.layout.feed_fragment, container, false)
-		binding.setLifecycleOwner(this)
 
 		return binding.root
 	}
@@ -46,6 +45,7 @@ class FeedFragment : Fragment(), Injectable {
 		super.onViewCreated(view, savedInstanceState)
 
 		feedViewModel = ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
+		binding.setLifecycleOwner(viewLifecycleOwner)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {
 			title = getString(R.string.feed_activity_title)

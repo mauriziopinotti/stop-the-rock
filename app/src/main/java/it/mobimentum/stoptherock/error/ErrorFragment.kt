@@ -32,14 +32,11 @@ class ErrorFragment : Fragment(), Injectable {
 	): View? {
 
 		binding = DataBindingUtil.inflate(inflater, R.layout.error_fragment, container, false)
-		with(binding) {
-			setLifecycleOwner(this@ErrorFragment)
-			listener = object : View.OnClickListener {
-				override fun onClick(view: View?) {
-					when (view?.id) {
-						R.id.retryBtn -> startActivity(Intent(activity, MainActivity::class.java))
-						R.id.noConnImg -> playStopTheRock()
-					}
+		binding.listener = object : View.OnClickListener {
+			override fun onClick(view: View?) {
+				when (view?.id) {
+					R.id.retryBtn -> startActivity(Intent(activity, MainActivity::class.java))
+					R.id.noConnImg -> playStopTheRock()
 				}
 			}
 		}
@@ -51,6 +48,7 @@ class ErrorFragment : Fragment(), Injectable {
 		super.onViewCreated(view, savedInstanceState)
 
 		errorViewModel = ViewModelProviders.of(this, viewModelFactory).get(ErrorViewModel::class.java)
+		binding.setLifecycleOwner(viewLifecycleOwner)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {
 			setDisplayHomeAsUpEnabled(false)

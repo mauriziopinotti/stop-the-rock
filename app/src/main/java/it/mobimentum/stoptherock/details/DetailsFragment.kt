@@ -47,12 +47,9 @@ class DetailsFragment : Fragment(), Injectable {
 	): View? {
 
 		binding = DataBindingUtil.inflate(inflater, R.layout.details_fragment, container, false)
-		with(binding) {
-			setLifecycleOwner(this@DetailsFragment)
-			listener = object : OnAsteroidClickListener {
-				override fun onItemClicked(asteroid: Asteroid) {
-					openUrl(asteroid)
-				}
+		binding.listener = object : OnAsteroidClickListener {
+			override fun onItemClicked(asteroid: Asteroid) {
+				openUrl(asteroid)
 			}
 		}
 
@@ -65,6 +62,7 @@ class DetailsFragment : Fragment(), Injectable {
 		super.onViewCreated(view, savedInstanceState)
 
 		detailsViewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailsViewModel::class.java)
+		binding.setLifecycleOwner(viewLifecycleOwner)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {
 			title = asteroid.name

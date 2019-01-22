@@ -32,14 +32,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 	lateinit var viewModelFactory: ViewModelProvider.Factory
 
 	private lateinit var feedViewModel: FeedViewModel
-	private lateinit var feedFragment: FeedFragment
+	private val feedFragment = FeedFragment.newInstance()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.feed_activity)
 
 		// Setup initial fragment
-		feedFragment = FeedFragment.newInstance()
 		if (savedInstanceState == null) {
 			supportFragmentManager.beginTransaction()
 				.replace(R.id.container, feedFragment)
