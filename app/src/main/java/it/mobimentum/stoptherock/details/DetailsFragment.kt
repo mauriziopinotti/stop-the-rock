@@ -61,7 +61,7 @@ class DetailsFragment : Fragment(), Injectable {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		detailsViewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailsViewModel::class.java)
+		detailsViewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(DetailsViewModel::class.java)
 		binding.setLifecycleOwner(viewLifecycleOwner)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 		}
 
 		// Subscribe to ViewModel events
-		feedViewModel = ViewModelProviders.of(feedFragment, viewModelFactory).get(FeedViewModel::class.java)
+		feedViewModel = ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
 		feedViewModel.openAsteroidEvent.observe(this@MainActivity, Observer<Asteroid> { asteroid ->
 			if (asteroid != null) {
 				openDetails(asteroid)

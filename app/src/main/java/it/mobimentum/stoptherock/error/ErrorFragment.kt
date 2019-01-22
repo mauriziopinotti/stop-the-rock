@@ -47,7 +47,7 @@ class ErrorFragment : Fragment(), Injectable {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		errorViewModel = ViewModelProviders.of(this, viewModelFactory).get(ErrorViewModel::class.java)
+		errorViewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(ErrorViewModel::class.java)
 		binding.setLifecycleOwner(viewLifecycleOwner)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {

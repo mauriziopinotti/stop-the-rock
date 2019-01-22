@@ -44,7 +44,7 @@ class FeedFragment : Fragment(), Injectable {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		feedViewModel = ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
+		feedViewModel = ViewModelProviders.of(activity!!, viewModelFactory).get(FeedViewModel::class.java)
 		binding.setLifecycleOwner(viewLifecycleOwner)
 
 		(activity as AppCompatActivity).supportActionBar?.apply {
