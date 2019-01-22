@@ -29,3 +29,4 @@ What I would had done having more time:
 - sonarqube pass
 - better error handling
 - profiling of application code
+- added crashlytics
