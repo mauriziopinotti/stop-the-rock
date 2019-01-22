@@ -41,27 +41,27 @@ object AppInjector {
                 }
 
                 override fun onActivityStarted(activity: Activity) {
-
+                    // NOOP
                 }
 
                 override fun onActivityResumed(activity: Activity) {
-
+                    // NOOP
                 }
 
                 override fun onActivityPaused(activity: Activity) {
-
+                    // NOOP
                 }
 
                 override fun onActivityStopped(activity: Activity) {
-
+                    // NOOP
                 }
 
                 override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
-
+                    // NOOP
                 }
 
                 override fun onActivityDestroyed(activity: Activity) {
-
+                    // NOOP
                 }
             })
     }
