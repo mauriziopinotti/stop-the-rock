@@ -31,32 +31,34 @@ class AsteroidsRepository @Inject constructor(
 
 //        android.os.SystemClock.sleep(5000) // XXX DEBUG
 
-//        if (nextDate.time < Date().time + 14 * DAY) {
-//            Log.w(TAG, "2 weeks limit reached!")
-//
-//            return emptyList()
-//        }
+		val result = mutableListOf<Asteroid>()
 
-		// Define the time range for the next request
-		val startDate = nextDate
-		val endDate = Date(startDate.time + 7 * DAY)
+		// Define the time range for the first week
+		result.addAll(doRequest(nextDate, Date(nextDate.time + 6 * DAY)) ?: emptyList())
+		if (!result.isEmpty()) {
+			// Define the time range for the second week
+			result.addAll(doRequest(Date(nextDate.time + 7 * DAY), Date(nextDate.time + 13 * DAY)) ?: emptyList())
+		}
+
+		// Save pagination for infinite scroll
+		nextDate = Date(nextDate.time + 14 * DAY)
+
+//		return emptyList() // XXX DEBUG
+
+		return result
+	}
+
+	private fun doRequest(startDate: Date, endDate: Date): List<Asteroid>? {
 		val request = api.feed(DATE_FORMAT.format(startDate), DATE_FORMAT.format(endDate))
-
-		// Do request
 		var response: AsteroidResponse? = null
 		try {
-			Log.d(TAG, "Excuting request: ${request.request().url()}")
+			Log.d(TAG, "Executing request: ${request.request().url()}")
 			response = request.execute().body()
 			if (BuildConfig.DEBUG) Log.v(TAG, "Got response: ${response}");
 		}
 		catch (e: Exception) {
 			Log.e(TAG, "Error getting asteroids feed", e)
 		}
-
-		// Save pagination for infinite scroll
-		nextDate = Date(endDate.time + 7 * DAY)
-
-//		return emptyList() // XXX DEBUG
 
 		return if (response != null) response.asteroids else null
 	}
